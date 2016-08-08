@@ -6,7 +6,7 @@ Dao is a JavaScript library for graph traversal.
 
 ## Getting Dao
 ```
-npm install --save dao
+npm install --save rhumbl-dao
 ```
 
 ## Using Dao
@@ -47,7 +47,7 @@ When working with graph-like structures, we often need to query things like node
 }
 ```
 
-Dao makes it easy for you to query over your data structure. 
+Dao makes it easy for you to query over your data structure.
 
 ## Examples
 

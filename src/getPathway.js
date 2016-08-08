@@ -37,7 +37,8 @@ function getPathway(entityId, relationshipTypes, algorithmName, data) {
   }
 
   nodes = (nodes || []).concat(getEntityById(entityId, data.entities));
-  let edges = _.map(_.map(nodes, 'id'), _.partial(getEdgeSet, _, relationshipTypes, data));
+  let edges = getEdgeSet(_.map(nodes, 'id'), relationshipTypes, data);
+
 
   return {nodes, edges};
 }

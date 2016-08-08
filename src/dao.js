@@ -8,6 +8,7 @@ import getIncomingEntitiesAll from './getIncomingEntitiesAll'
 import getOutgoingEntities from './getOutgoingEntities'
 import getOutgoingEntitiesAll from './getOutgoingEntitiesAll'
 import getPathway from './getPathway'
+import rankDAG from './rankDAG'
 
 
 export {
@@ -18,4 +19,5 @@ export {
   getOutgoingEntitiesAll,
   getEdgeSet,
   getPathway,
+  rankDAG
 }
