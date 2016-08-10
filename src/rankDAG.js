@@ -3,7 +3,7 @@
 */
 function rankDAG(dag, iterateeFn, maxIterations = 10) {
   if (!dag) {
-    console.error('DAG of {nodes: [], edges:[]} must be given');
+    console.error('DAG of {nodes: []} must be given');
   }
 
   let nodes = dag.nodes;
