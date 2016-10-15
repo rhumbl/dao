@@ -1,7 +1,7 @@
 'use strict';
 
 
-import dao from '../src/dao';
+// import dao from '../src/dao';
 
 // describe('dao', function () {
 //   it('dao should contain', function (done) {

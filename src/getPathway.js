@@ -7,38 +7,54 @@ import getEdgeSet from './getEdgeSet'
 import getEntityById from './getEntityById'
 
 
-function getPathway(entityId, relationshipTypes, algorithmName, data) {
+function getPathway(entityIdOrIds, relationshipTypes, algorithmName, data) {
   let nodes = [];
+  let edges = [];
 
   if (!relationshipTypes || relationshipTypes.length === 0) {
     console.error('getPathway: relationshipTypes[] cannot be null');
   }
 
-  if (algorithmName === 'INCOMING_ALL') {
-    nodes = getIncomingEntitiesAll(entityId, relationshipTypes, data);
-
-  } else if (algorithmName === 'INCOMING') {
-    nodes = getIncomingEntities(entityId, relationshipTypes, data);
-
-  } else if (algorithmName === 'OUTGOING_ALL') {
-    nodes = getOutgoingEntitiesAll(entityId, relationshipTypes, data);
-
-  } else if (algorithmName === 'OUTGOING') {
-    nodes = getOutgoingEntities(entityId, relationshipTypes, data);
-    // console.log(nodes);
-
-  } else if (algorithmName === 'INCOMING-OUTGOING') {
-    let nodesIncoming = getIncomingEntities(entityId, relationshipTypes, data);
-    let nodesOutgoing = getOutgoingEntities(entityId, relationshipTypes, data);
-    nodes = nodesIncoming.concat(nodesOutgoing);
-
+  let entityIds = [];
+  if (typeof entityIdOrIds === 'string') {
+    entityIds.push(entityIdOrIds);
   } else {
-    console.error('algorithmName', algorithmName, 'not recognized');
+    entityIds = entityIdOrIds;
   }
 
-  nodes = (nodes || []).concat(getEntityById(entityId, data.entities));
-  let edges = getEdgeSet(_.map(nodes, 'id'), relationshipTypes, data);
+  for (var entityId of entityIds) {
+    let pathwayNodes;
+    if (algorithmName === 'INCOMING_ALL') {
+      pathwayNodes = getIncomingEntitiesAll(entityId, relationshipTypes, data);
 
+    } else if (algorithmName === 'INCOMING') {
+      pathwayNodes = getIncomingEntities(entityId, relationshipTypes, data);
+
+      console.log(pathwayNodes)
+
+    } else if (algorithmName === 'OUTGOING_ALL') {
+      pathwayNodes = getOutgoingEntitiesAll(entityId, relationshipTypes, data);
+
+    } else if (algorithmName === 'OUTGOING') {
+      pathwayNodes = getOutgoingEntities(entityId, relationshipTypes, data);
+      // console.log(nodes);
+
+    } else if (algorithmName === 'INCOMING-OUTGOING') {
+      let nodesIncoming = getIncomingEntities(entityId, relationshipTypes, data);
+      let nodesOutgoing = getOutgoingEntities(entityId, relationshipTypes, data);
+      pathwayNodes = nodesIncoming.concat(nodesOutgoing);
+
+    } else {
+      console.error('algorithmName', algorithmName, 'not recognized');
+    }
+
+    nodes = [...nodes, ...pathwayNodes, getEntityById(entityId, data.entities)];
+    console.log('nodes so far of', entityId, nodes);
+    edges = edges.concat(getEdgeSet(_.map(nodes, 'id'), relationshipTypes, data));
+  }
+
+  nodes = _.uniqBy(nodes, 'id');
+  edges = _.uniqBy(edges, 'id');
 
   return {nodes, edges};
 }
