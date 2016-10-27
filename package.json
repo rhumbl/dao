@@ -1,6 +1,6 @@
 {
   "name": "rhumbl-dao",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "scripts": {
     "start": "npm run serve | npm run dev",
     "serve": "./node_modules/.bin/http-server -p 8080",
