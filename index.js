@@ -9,5 +9,4 @@ dao = require('./dist/dao.js');
 window.dao = dao;
 global.dao = dao;
 
-export default dao
 module.exports = dao;

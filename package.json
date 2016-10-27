@@ -1,6 +1,6 @@
 {
   "name": "rhumbl-dao",
-  "version": "0.4.1",
+  "version": "0.5.4",
   "scripts": {
     "start": "npm run serve | npm run dev",
     "serve": "./node_modules/.bin/http-server -p 8080",
@@ -15,12 +15,13 @@
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-es2015": "^6.13.2",
+"babel-preset-es2015": "^6.13.2",
     "babel-preset-stage-0": "^6.5.0",
     "http-server": "^0.9.0",
     "mocha": "^2.5.3",
     "should": "^10.0.0",
     "sinon": "^1.17.5",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.16.2"
   }
 }
