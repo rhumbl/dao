@@ -2,7 +2,8 @@
 
 var dao = window.dao || {};
 
-dao = require('./src/dao.js');
+//dao = require('./src/dao.js');
+dao = require('./dist/dao.js');
 
 // make dao available globally
 window.dao = dao;
